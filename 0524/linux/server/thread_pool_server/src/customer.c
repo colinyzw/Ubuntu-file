@@ -3,6 +3,7 @@
 void* customer(void* arg)
 {
     thread_pool_t* p = NULL;
+    p = (thread_pool_t*)arg;
     task_t tmp;
     while(p->thread_shutdown)
     {

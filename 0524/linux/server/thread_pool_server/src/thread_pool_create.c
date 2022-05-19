@@ -1,6 +1,6 @@
 #include <thread_pool.h>
 
-thread_pool_t* thread_pool_create(int tmin,int tmax,int qmax)
+thread_pool_t* thread_pool_create(int tmin,int tmax,int qmax)//qmax业务队列最大数
 {
     printf("thread_pool_create runing...\n");
     thread_pool_t* pool = NULL;
@@ -15,10 +15,12 @@ thread_pool_t* thread_pool_create(int tmin,int tmax,int qmax)
     pool->thread_exitcode = 0;
     printf("pool init over...\n");
 
+    //申请消费者线程数组
     if((pool->tids = (pthread_t*)malloc(sizeof(pthread_t) * tmax))==NULL)
         thread_pool_error("thrad_poll_create -> malloc tids error",0);
     bzero(pool->tids,sizeof(pthread_t) * tmax);
 
+    //申请任务队列
     if((pool->task_list = (task_t*)malloc(sizeof(task_t)*qmax))==NULL)
         thread_pool_error("thrad_poll_create -> malloc task_list error",0);
 
@@ -32,14 +34,16 @@ thread_pool_t* thread_pool_create(int tmin,int tmax,int qmax)
         printf("thread_pool_create-> init lock or cond error!\n");
         exit(0);
     }
+
     printf("poll init3\n");
-    int err;
+    int err;//错误处理
     for(int i=0;i<tmin;i++)
     {
         if((err = pthread_create(&pool->tids[i],NULL,customer,(void*)pool))>0)
             thread_pool_error("thread_pllo_create-> customer thread error",err);
         printf("test1\n");
-        ++(pool->thread_alive);
+        ++pool->thread_alive;
+        printf("thread_alive:%d\n",pool->thread_alive);
         printf("test2\n");
     }
     printf("pool init4\n");

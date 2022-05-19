@@ -53,10 +53,7 @@ void* manager(void* arg)
                 pthread_cond_signal(&p->not_empty);
 
         }
-
-
         sleep(_TIMEOUT);
-
     }
     pthread_exit(NULL);
 }
