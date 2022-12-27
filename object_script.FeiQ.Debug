@@ -1,0 +1,14 @@
+INPUT(
+./debug\main.o
+./debug\feiq.o
+./debug\UdpNet.o
+./debug\NetMediator.o
+./debug\UdpMediator.o
+./debug\ckernel.o
+./debug\chatdialog.o
+./debug\moc_feiq.o
+./debug\moc_INetMediator.o
+./debug\moc_UdpMediator.o
+./debug\moc_ckernel.o
+./debug\moc_chatdialog.o
+);

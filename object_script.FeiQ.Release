@@ -1,0 +1,14 @@
+INPUT(
+./release\main.o
+./release\feiq.o
+./release\UdpNet.o
+./release\NetMediator.o
+./release\UdpMediator.o
+./release\ckernel.o
+./release\chatdialog.o
+./release\moc_feiq.o
+./release\moc_INetMediator.o
+./release\moc_UdpMediator.o
+./release\moc_ckernel.o
+./release\moc_chatdialog.o
+);
